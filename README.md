@@ -15,4 +15,7 @@ import os
 from library.flask_app import start
 from library.server import Server
 from library.data import Data
+
+parent_dir = os.getcwd() + '\\'
+server = Server(SERVER_ICON, parent_dir + 'user.py', parent_dir + 'server.py')
 ```
