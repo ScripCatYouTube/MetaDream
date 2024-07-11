@@ -22,3 +22,11 @@ server = Server(SERVER_ICON, parent_dir + 'user.py', parent_dir + 'server.py')
 
 start(server, is_run = True)
 ```
+
+Create custom user class
+
+```
+# user.py
+
+from library.basic_user import User
+```
