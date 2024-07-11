@@ -29,4 +29,20 @@ Create custom user class
 # user.py
 
 from library.basic_user import User
+
+class User(User):
+	def __init__(self, fabric_user, app, server, vault):
+		super().__init__(fabric_user, app, server, vault)
+```
+
+Create custom server class
+
+```
+# server.py
+
+from library.fabric_server import FabricServer
+
+class Server(FabricServer): 
+	def __init__(self, server):
+		super().__init__(server)
 ```
