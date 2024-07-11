@@ -1,0 +1,10 @@
+
+Response
+			ping - get is alive server, count players and icon (data is not working is count players)
+			all - for all
+			local - for one session # List for one session
+			response(get from user) - clients send response with value
+
+responses (user)
+			{'response': 'update_user_class'} # re-import user
+			{'response': 'get_afk_time'} # afk time
