@@ -1,5 +1,5 @@
 # apiServerBase
-A library for ASB server
+A library for ASB game server
 
 # Example Create Server
 
