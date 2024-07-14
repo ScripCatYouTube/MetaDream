@@ -1,7 +1,7 @@
 import os
 import json
 
-from .random_sha import get_name_file
+from .game.nodes.random_sha import get_name_file
 from .errors import ErrorUserDataFileIsNotExits, ErrorUserDataJsonUnsuccessfulLoad, ErrorUserDataJsonUnsuccessfulDump
 
 

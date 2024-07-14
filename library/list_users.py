@@ -1,6 +1,6 @@
 from flask import session
 
-from .random_sha import get_name_file
+from .game.nodes.random_sha import get_name_file
 
 class ListUsers:
 	def __init__(self):

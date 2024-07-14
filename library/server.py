@@ -4,7 +4,7 @@ from importlib.machinery import SourceFileLoader
 
 import os
 
-from .data import Data
+from .game.nodes.data import Data
 from .list_users import ListUsers
 from .thread_loop import ThreadLoop
 from .authorization import Authorization
