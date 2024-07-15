@@ -5,7 +5,6 @@ from .fabric_user import *
 from .thread_loop import *
 from .basic_user import *
 from .user_data import *
-#from .game.node import *
 from .flask_app import *
 from .server import *
 from .errors import *

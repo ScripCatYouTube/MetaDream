@@ -1,9 +1,13 @@
 import urllib3
 import requests
 
+from PIL import Image
+from io import BytesIO
+
 class Data:
-	def __init__(self, string_data: str) -> None:
+	def __init__(self, string_data: str, format_convert: str = 'png') -> None:
 		self.data = self.update_data(string_data)
+		self.format = format_convert
 
 
 	def update_data(self, string_data: str) -> dict:
@@ -12,7 +16,10 @@ class Data:
 
 		if string_data[:8] == 'https://' or string_data[:7] == 'http://': 
 			bin_data = self.url_data(string_data)
-			extension = 'url'
+
+		elif isinstance(string_data, Image):
+			bin_data = self.pillow_image(string_data)
+			extension = self.format
 
 		else:
 			try:
@@ -23,12 +30,11 @@ class Data:
 				pass
 
 		try:
-			if bin_data and extension != 'url':
+			if bin_data and extension == None:
 				bin_data = str(bin_data)[2:][:-1] 
 				extension = string_data.split('.')[-1]
 
-		except (AttributeError, ValueError, TypeError): 
-			pass
+		except (AttributeError, ValueError, TypeError): pass
 
 		return {'data': bin_data, 'type': 'raw', 'type_file': extension}
 
@@ -40,4 +46,8 @@ class Data:
 		except (requests.exceptions.ConnectionError, urllib3.exceptions.MaxRetryError, urllib3.exceptions.NameResolutionError): 
 			pass
 
-			
+
+	def pillow_image(self, image) -> bytes:
+		with BytesIO() as f:
+			image.save(f, format = self.format.upper())
+			return f.getvalue()		

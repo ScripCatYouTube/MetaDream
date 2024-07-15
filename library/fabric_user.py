@@ -25,7 +25,7 @@ class FabricUser:
 
 
 	def response(self, value_dict): 
-		self.update_death_time()
+		#self.update_death_time()
 		return self.user.response(value_dict)
 
 
@@ -39,7 +39,7 @@ class FabricUser:
 
 
 	def check_death_time(self):
-		if self.timedeath <= datetime.now(): self.server.autho.logout(user = self)
+		if self.timedeath <= datetime.now(): self.server.autho.logout()
 
 
 	def get_afk_time(self):
