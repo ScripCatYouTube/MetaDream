@@ -1,6 +1,6 @@
 from .node2d import Node2D
-from .data import Data
 from .nodes import Nodes
+from .data import Data
 
 class Camera2D(Node2D):
 	def __init__(self, texture, zoom = [1,1], is_enabled = False, smooth_position = None, smooth_rotation = None, position = [0, 0], rotation = 0, scale = [0, 0], parent = 'root'):
@@ -12,15 +12,13 @@ class Camera2D(Node2D):
 		self.texture = Data(texture)
 		self.zoom = zoom
 
-	def get_source(self):
+
+	def get_node(self):
 		return {
 					'id': self.id,
 					'zoom': self.zoom,
 					'type': self.type_node,
-					'scale': self.scale,
 					'parent': self.parent,
-					'rotation': self.rotation,
-					'position': self.position,
 					'is_enabled': self.is_enabled,
 
 					# if none, position smoothing is disabled. if any number position smothing is enabled
@@ -29,3 +27,4 @@ class Camera2D(Node2D):
 					'smooth_rotation': smooth_rotation
 					
 		}
+

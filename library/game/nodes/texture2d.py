@@ -8,13 +8,10 @@ class Texture2D(Node2D):
 		self.type_node = Nodes.Texture2D.value
 		self.texture = Data(texture)
 
-	def get_source(self):
+	def get_node(self):
 		return {
 					'id': self.id,
-					'scale': self.scale,
 					'parent': self.parent,
 					'type': self.type_node,
-					'rotation': self.rotation,
-					'position': self.position,
 					'texture': self.texture.data
 		}
