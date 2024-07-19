@@ -11,7 +11,7 @@ from .authorization import Authorization
 from .message_tracker import MessageTracker
 
 class Server:
-	def __init__(self, icon, path_user = './', path_server = './', path_data = './usr_dat', path_user_data = './usr_dat/'):
+	def __init__(self, icon, path_user = './', path_server = './', path_data = './usr_dat', path_user_data = './usr_dat/users/'):
 		self.app = None
 		self.player_count = 0
 		self.path_user = path_user
@@ -27,6 +27,7 @@ class Server:
 		self.user_class = self.import_user()
 		self.server_class = self.import_server()
 		self.autho = Authorization(self.path_user_data, self)
+
 
 	def _response(self, resp):
 		if session.get('user'):
@@ -49,13 +50,17 @@ class Server:
 	def import_user(self):
 		return SourceFileLoader("user_module", self.path_user).load_module().User
 
+
 	def import_server(self):
-		return SourceFileLoader("server_module", self.path_server).load_module().Server
+		server_class =  SourceFileLoader("server_module", self.path_server).load_module().Server
+		self.dev_server = server_class(self)
+		return server_class
 
 
 	def get_user(self):
 		if session.get('user'):
 			return self.players.get_user(session['user'])
+
 
 	def response_update(self, response):
 		is_admin_creator = self.get_user().data.read(args = ['admin', 'creator']) 

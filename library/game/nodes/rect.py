@@ -2,7 +2,7 @@
 class Rect:
 	def __init__(self, position = [0,0], size = [0, 0], scale = [1, 1], rotation = 0) -> None:
 		self.position = position
-		self.rotation
+		self.rotation = rotation
 		self.scale = scale
 		self.size = size
 		self.defualt_size = size
@@ -54,9 +54,15 @@ class Rect:
 		self.size = size
 
 
-	def is_collision(self, rect: Rect) -> bool:
+	def is_collision(self, rect) -> bool:
 		self_corners = self.get_two_corners_rect()
 		rect_corners = rect.get_two_corners_rect()
 
+		return self.collided(self_corners, rect_corners)
 
-		if self_corners[0][0] <= rect_corners[1][0] and self_corners[1][0] >= rect_corners[0][0]: pass
+
+	def collided(self, r1, r2) -> bool:
+		if r1[1][0] >= r2[0][0] and r1[0][0] <= r2[1][0] and r1[1][1] >= r2[0][1] and r1[0][1] <= r2[1][1]:
+			return True
+
+		return False

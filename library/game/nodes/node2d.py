@@ -19,4 +19,4 @@ class Node2D(Node):
 
 
 	def get_source(self):
-		return self.rect.update(self.get_node())
+		return [self.rect.update(self.get_node())] + self.get_children()
