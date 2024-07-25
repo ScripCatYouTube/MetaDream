@@ -1,10 +1,42 @@
 
-Response
+Responses (user)
 			ping - get is alive server, count players and icon (data is not working is count players)
 			all - for all
 			local - for one session # List for one session
 			response(get from user) - clients send response with value
 
-responses (user)
+Response:
 			{'response': 'update_user_class'} # re-import user
 			{'response': 'get_afk_time'} # afk time
+
+
+Server response(added in local or in all)
+            Add node
+
+            {
+                'response': 'add_node',
+                'node': {
+                            'id': 'hash_id',
+                            'parent': 'root',
+                            'type': 'node'
+                        }
+            }
+
+
+            Delete node
+
+            {
+                'response': 'delete_node',
+                'id': 'hash_id'
+            }
+
+            Change data node
+
+            {
+                'response': 'change_node',
+                'id': 'hash_id',
+                node:
+                    {
+                        'data': ...
+                    }
+            }

@@ -1,3 +1,4 @@
+from .nodes import 
 from .location import Location
 
 class ServerLocation(Location):
@@ -20,7 +21,14 @@ class ServerLocation(Location):
 		return objects
 
 
-	def camera_player(self, player_name) -> list:
+	def camera_player(self, player_name: str) -> list:
 		return self.camera_rect(
 			self.players[player_name].rect
 		)
+
+
+	def view_player(self, player_name: str) -> dict:
+		
+	
+	#def add_node(self, node) -> dict:
+
