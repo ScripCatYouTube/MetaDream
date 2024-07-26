@@ -22,6 +22,15 @@ Server response(added in local or in all)
                         }
             }
 
+            Add nodes
+
+            {
+                'response': 'add_nodes',
+                'nodes': {
+                            ...
+                         }
+            }
+
 
             Delete node
 

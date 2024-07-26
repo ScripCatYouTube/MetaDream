@@ -1,14 +1,15 @@
-from json import loads
+from json import loads, JSONDecodeError
 from flask import session
 from importlib.machinery import SourceFileLoader
 
-import os
+
 
 from .game.nodes.data import Data
 from .list_users import ListUsers
 from .thread_loop import ThreadLoop
 from .authorization import Authorization
 from .message_tracker import MessageTracker
+from .game.control_locations import ControlLocations
 
 class Server:
 	def __init__(self, icon, path_user = './', path_server = './', path_data = './usr_dat', path_user_data = './usr_dat/users/'):
@@ -27,6 +28,7 @@ class Server:
 		self.user_class = self.import_user()
 		self.server_class = self.import_server()
 		self.autho = Authorization(self.path_user_data, self)
+		self.control_locations = ControlLocations()
 
 
 	def _response(self, resp):
@@ -62,7 +64,7 @@ class Server:
 			return self.players.get_user(session['user'])
 
 
-	def response_update(self, response):
+	def response_update(self, resp):
 		is_admin_creator = self.get_user().data.read(args = ['admin', 'creator']) 
 
 		if 'response' in resp:
@@ -73,6 +75,7 @@ class Server:
 					return {'status': True, 'data': 'Successfuly re-imported'}
 
 				return {'status': False, 'data': 'You\'re is\'nt admin/creator'}
+
 
 			elif resp['response'] == 'update_user_class':
 				if is_admin_creator['admin'] or is_admin_creator['creator']:

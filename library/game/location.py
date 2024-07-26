@@ -1,5 +1,5 @@
 from nodes.node import Node
-
+from nodes.rect import Rect
 
 class Location:
 	def __init__(self) -> None:
@@ -55,3 +55,21 @@ class Location:
 				return n
 
 		raise TypeError(text_type_error)
+
+
+	def camera_rect(self, rect: Rect) -> list:
+		objects = []
+
+		for i in self.objects:
+			node = self.objects[i].rect
+
+			if rect.is_collision(node):
+				objects += node.get_source()
+
+		return objects
+
+
+	def camera_node(self, node: Node) -> list:
+		return self.camera_rect(
+			node.rect
+		)

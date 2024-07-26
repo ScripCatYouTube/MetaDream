@@ -21,7 +21,7 @@ class FabricUser:
 
 
 	def update_user(self):
-		self.user = server.user_class(self, self.app, self.server, self.data)
+		self.user = self.server.user_class(self, self.app, self.server, self.data)
 
 
 	def response(self, value_dict): 
