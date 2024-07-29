@@ -21,10 +21,10 @@ class Camera2D(Node2D):
 					'parent': self.parent,
 					'is_enabled': self.is_enabled,
 
-					# if none, position smoothing is disabled. if any number position smothing is enabled
-					'smooth_position': smooth_position,
+					# if none, position smoothing is disabled. if any number position smoothing is enabled
+					'smooth_position': self.smooth_position,
 					# Same as for smooth_position
-					'smooth_rotation': smooth_rotation
+					'smooth_rotation': self.smooth_rotation
 					
 		}
 

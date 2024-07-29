@@ -8,7 +8,7 @@ class Texture2D(Node2D):
 		self.type_node = Nodes.Texture2D.value
 		self.texture = Data(texture)
 
-	def get_node(self):
+	def get_node(self) -> dict:
 		return {
 					'id': self.id,
 					'parent': self.parent,

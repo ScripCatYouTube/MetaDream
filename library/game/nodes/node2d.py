@@ -10,13 +10,15 @@ class Node2D(Node):
 		self.type_node = Nodes.Node2D.value
 
 
-	def get_node(self):
+	def get_node(self) -> dict:
 		return {
 					'id': self.id,
 					'parent': self.parent,
 					'type': self.type_node,
 		}
 
+	def _get_source(self) -> dict:
+		return self.rect.update(self._get_source())
 
-	def get_source(self):
-		return [self.rect.update(self.get_node())] + self.get_children()
+	def get_source(self) -> list:
+		return [self.get_node()] + self.get_children()

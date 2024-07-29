@@ -9,13 +9,16 @@ class Node:
 		self.parent = parent
 
 
+	def _get_source(self) -> dict:
+		return {
+			'id': self.id,
+			'type': self.type_node,
+			'parent': self.parent
+
+		}
+
 	def get_source(self) -> list:
-		return [{
-					'id': self.id,
-					'type': self.type_node,
-					'parent': self.parent
-					
-		}] + self.get_children()
+		return [self._get_source()] + self.get_children()
 
 
 	def get_children(self) -> list:
