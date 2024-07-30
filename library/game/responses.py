@@ -29,5 +29,41 @@ def delete_node(message_controller, node: (Node, str)): # in 'node' type Node or
     message_controller.add_message(response)
 
 
-def change_data_node
+def change_data_node(message_controller, node: Node, data: (Node, dict), id_hash: (Node, str) = None): # in 'data' type Node(change data from this node to 'node') or dict
+    data_send = {}
+    _id_hash = None
+
+    if id_hash == None: pass
+
+    elif isinstance(id_hash, Node):
+        _id_hash = Node.id
+
+    elif isinstance(id_hash, str):
+        _id_hash = id_hash
+
+
+    if isinstance(data, Node):
+        data_send = node._get_source()
+
+    elif isinstance(data, dict):
+        data_send = node
+
+    else:
+        raise TypeError('node isn\'t type Node or dict')
+
+
+    if _id_hash == None:
+        _id_hash = data_send['id']
+
+
+    response = {
+        'response': 'change_node',
+        'id': _id_hash,
+        node:
+            {
+                'data': data_send
+            }
+
+    }
+
 

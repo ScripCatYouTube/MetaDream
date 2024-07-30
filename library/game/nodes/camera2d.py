@@ -1,6 +1,7 @@
 from .node2d import Node2D
 from .nodes import Nodes
-from .data import Data
+from library.game.nodes.utils.data import Data
+
 
 class Camera2D(Node2D):
 	def __init__(self, texture, zoom = [1,1], is_enabled = False, smooth_position = None, smooth_rotation = None, position = [0, 0], rotation = 0, scale = [0, 0], parent = 'root'):

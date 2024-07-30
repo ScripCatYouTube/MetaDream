@@ -1,8 +1,8 @@
 import os
 import json
 
-from .game.nodes.random_sha import get_name_file
-from .errors import ErrorUserDataFileIsNotExits, ErrorUserDataJsonUnsuccessfulLoad, ErrorUserDataJsonUnsuccessfulDump
+from .game.nodes.utils.random_sha import get_name_file
+from .errors import ErrorUserDataFileIsNotExits, ErrorUserDataJsonUnsuccessfulLoad
 
 
 class UserData:

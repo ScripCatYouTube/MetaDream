@@ -1,5 +1,5 @@
-from nodes.node import Node
-from nodes.rect import Rect
+from .nodes.node import Node
+from .nodes.utils.rect import Rect
 
 class Location:
 	def __init__(self) -> None:

@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class Nodes(Enum):
 	Node = 'node'
 	Node2D = 'node2d'

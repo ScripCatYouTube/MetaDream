@@ -1,6 +1,7 @@
-from .node2d import Node2D
-from .data import Data
 from .nodes import Nodes
+from .node2d import Node2D
+from library.game.nodes.utils.data import Data
+
 
 class Texture2D(Node2D):
 	def __init__(self, texture, position = [0, 0], rotation = 0, scale = [0, 0], parent = 'root'):

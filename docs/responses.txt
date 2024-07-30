@@ -5,6 +5,12 @@ Responses (user)
 			local - for one session # List for one session
 			response(get from user) - clients send response with value
 
+Responses (user/account)
+            logout - log out
+            login <nickname> <password> - log in
+            register <nickname> <password> - register
+
+
 Response:
 			{'response': 'update_user_class'} # re-import user
 			{'response': 'get_afk_time'} # afk time

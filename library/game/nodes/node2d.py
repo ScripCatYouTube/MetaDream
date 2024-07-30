@@ -1,11 +1,11 @@
-from .rect import Rect
 from .node import Node
 from .nodes import Nodes
+from library.game.nodes.utils.rect import Rect
+
 
 class Node2D(Node):
 	def __init__(self, position = [0, 0], rotation = 0, scale = [0, 0], parent = 'root'):
 		super().__init__(parent)
-		self.parent = parent
 		self.rect = Rect(position = position, size = [0, 0], scale = scale, rotation = rotation)
 		self.type_node = Nodes.Node2D.value
 
@@ -18,7 +18,7 @@ class Node2D(Node):
 		}
 
 	def _get_source(self) -> dict:
-		return self.rect.update(self._get_source())
+		return self.rect.update(self.get_node())
 
 	def get_source(self) -> list:
-		return [self.get_node()] + self.get_children()
+		return [self._get_source()] + self.get_children()
