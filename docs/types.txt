@@ -1,8 +1,0 @@
-
-Data
-		{'data': url, 'type': 'url'} # DON'T WORK 
-		{'data': bin_data_file, 'type': 'raw', 'type_file': type_file}
-
-Users:
-		Account: Nickname Password
-		Anonym: Nickname false # not work
