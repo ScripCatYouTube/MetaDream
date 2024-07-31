@@ -1,12 +1,10 @@
 from nodes.node import Node
 
 def add_nodes(message_controller, node: Node) -> None:
-    response = {
+    message_controller.add_message({
         'response': 'add_nodes',
         'nodes': node.get_source()
-    }
-
-    message_controller.add_message(response)
+    })
 
 
 def delete_node(message_controller, node: (Node, str)): # in 'node' type Node or string(hash id)
@@ -21,12 +19,10 @@ def delete_node(message_controller, node: (Node, str)): # in 'node' type Node or
     else:
         raise TypeError('node isn\'t type Node or string')
 
-    response = {
+    message_controller.add_message({
         'response': 'delete_node',
         'id': hash_id
-    }
-
-    message_controller.add_message(response)
+    })
 
 
 def change_data_node(message_controller, node: Node, data: (Node, dict), id_hash: (Node, str) = None): # in 'data' type Node(change data from this node to 'node') or dict
@@ -56,7 +52,7 @@ def change_data_node(message_controller, node: Node, data: (Node, dict), id_hash
         _id_hash = data_send['id']
 
 
-    response = {
+    message_controller.add_message({
         'response': 'change_node',
         'id': _id_hash,
         node:
@@ -64,6 +60,8 @@ def change_data_node(message_controller, node: Node, data: (Node, dict), id_hash
                 'data': data_send
             }
 
-    }
+    })
+
+
 
 

@@ -77,7 +77,7 @@ class Server:
 				return {'status': False, 'data': 'You\'re is\'nt admin/creator'}
 
 
-			elif resp['response'] == 'update_user_class':
+			elif resp['response'] == 'update_server_class':
 				if is_admin_creator['admin'] or is_admin_creator['creator']:
 
 					self.server_class = self.import_server()

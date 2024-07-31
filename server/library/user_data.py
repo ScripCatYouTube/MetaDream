@@ -26,7 +26,7 @@ class UserData:
 				new_dict = {}
 				for ii in kwargs:
 					new_dict[ii] = data[ii]
-					print(ii, i, data[ii], kwargs[ii])
+					#print(ii, i, data[ii], kwargs[ii])
 					
 				if new_dict == kwargs: 
 					self.file = i
@@ -47,9 +47,9 @@ class UserData:
 
 		edited_data = readed_data
 		for i in kwargs:
-			edited_data[i] = kwargs
+			edited_data[i] = kwargs[i]
 
-		self._write(edited_data)
+		self._write(file, edited_data)
 
 
 	def read(self, file = None, args = []):
@@ -69,13 +69,13 @@ class UserData:
 				data_readed[k] = None
 				json_data[k] = None
 
-				self.write({k: None}, file = i)
+				self.write({k: None}, file = file)
 
 		return data_readed
 
 
 	def _write(self, file, data):
-		with open(os.path.join(self.path, file), 'w') as f: f.write(json.dumps(data))
+		with open(os.path.join(self.path, file), 'w') as f: f.write(json.dumps(data, indent = 4))
 
 
 	def _read(self, file):

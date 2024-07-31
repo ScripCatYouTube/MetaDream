@@ -26,6 +26,9 @@ class FabricUser:
 
 	def response(self, value_dict): 
 		#self.update_death_time()
+		if 'response' in value_dict:
+			if value_dict['response'] == 'get_afk_time':
+				return {'time': None}
 		return self.user.response(value_dict)
 
 

@@ -13,6 +13,7 @@ Responses (user/account)
 
 Response:
 			{'response': 'update_user_class'} # re-import user
+			{'response': 'update_server_class'} # re-import server
 			{'response': 'get_afk_time'} # afk time
 
 
