@@ -63,7 +63,7 @@ class Authorization:
 
 
 	def create_user(self, username, password): 
-		usr = FabricUser(self.server, {'username': username, 'password': password, 'admin': False, 'creator': False})
+		usr = FabricUser(self.server, {'username': username, 'password': password}, {'permissions': []})
 
 		self.server.players.add_user(usr)
 		#session['user']

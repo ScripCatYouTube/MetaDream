@@ -8,6 +8,8 @@ class User:
 
 
 	def response(self, resp):
+		self.update_death_time()
+
 		return {'status': True}
 
 

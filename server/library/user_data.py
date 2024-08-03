@@ -17,7 +17,7 @@ class UserData:
 		return [f for f in os.listdir(self.path) if os.path.isfile(os.path.join(self.path, f))]
 
 
-	def find_file(self, kwargs, is_create = True):
+	def find_file(self, kwargs: dict, fkwargs: dict = {}, is_create: bool = True):
 		for i in self.get_files():
 			data = self._read(i)
 			is_kw = kwargs
@@ -34,6 +34,7 @@ class UserData:
 
 			except KeyError: pass
 
+		kwargs.update(fkwargs)
 		if is_create: self.create_new_file_data(kwargs)
 		
 		return False

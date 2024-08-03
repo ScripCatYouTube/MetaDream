@@ -6,29 +6,35 @@ from .user_data import UserData
 from .message_tracker import MessageTracker
 
 class FabricUser:
-	def __init__(self, server, kwargs):
+	def __init__(self, server, account: dict, kwargs: dict):
 		self.server = server
 		self.app = server.app
 		self.data = UserData(server.path_user_data)
-		self.data.find_file(kwargs)
+		self.data.find_file(account, fkwargs = kwargs)
 		self.msg_track = MessageTracker()
-		self.delta_timedeath = timedelta(minutes = 30) # AFK Time
+		self.delta_timedeath = timedelta(minutes = 10) # AFK Time
 		self.timedeath = self.delta_timedeath 
 
 		self.update_death_time()
 
-		self.user = server.user_class(self, self.app, self.server, self.data)
+
+		self.update_user()
 
 
 	def update_user(self):
 		self.user = self.server.user_class(self, self.app, self.server, self.data)
 
 
-	def response(self, value_dict): 
-		#self.update_death_time()
+
+	def response(self, value_dict):
 		if 'response' in value_dict:
 			if value_dict['response'] == 'get_afk_time':
-				return {'time': None}
+				return {
+							'time_passed': str(self.timedeath - datetime.now()),
+							'max_time': str(self.timedeath),
+							'time_now': str(datetime.now())
+						}
+
 		return self.user.response(value_dict)
 
 

@@ -1,12 +1,12 @@
-from json import loads, JSONDecodeError
 from flask import session
+from datetime import datetime
+from json import loads, JSONDecodeError
 from importlib.machinery import SourceFileLoader
 
 
-
-from library.game.nodes.utils.data import Data
 from .list_users import ListUsers
 from .thread_loop import ThreadLoop
+from .game.nodes.utils.data import Data
 from .authorization import Authorization
 from .message_tracker import MessageTracker
 from .game.control_locations import ControlLocations
@@ -20,7 +20,7 @@ class Server:
 		self.path_data = path_data
 		self.path_user_data = path_user_data
 
-		self.ping_data = {"players": self.player_count, "icon": Data(icon).data}
+		self.ping_data = {"players": self.player_count, "icon": Data(icon).data, 'utc': datetime.now().astimezone().isoformat().split('+')[1]}
 
 		self.players = ListUsers()
 		self.thread_loop = ThreadLoop(self)
@@ -65,11 +65,9 @@ class Server:
 
 
 	def response_update(self, resp):
-		is_admin_creator = self.get_user().data.read(args = ['admin', 'creator']) 
-
 		if 'response' in resp:
 			if resp['response'] == 'update_user_class':
-				if is_admin_creator['admin'] or is_admin_creator['creator']:
+				if self.check_permissions('admin', 'creator'):
 
 					self.user_class = self.import_user()
 					return {'status': True, 'data': 'Successfuly re-imported'}
@@ -78,9 +76,18 @@ class Server:
 
 
 			elif resp['response'] == 'update_server_class':
-				if is_admin_creator['admin'] or is_admin_creator['creator']:
+				if self.check_permissions('admin', 'creator'):
 
 					self.server_class = self.import_server()
 					return {'status': True, 'data': 'Successfuly re-imported'}
 
-				return {'status': False, 'data': 'You\'re is\'nt admin/creator'}		
+				return {'status': False, 'data': 'You\'re is\'nt admin/creator'}
+
+
+	def check_permissions(self, *permissions: str):
+		user_permissions = self.get_user().data.read(args = ['permissions'])['permissions']
+
+		for i in permissions:
+			if (i in user_permissions) == False:
+				return False
+			return True
