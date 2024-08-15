@@ -67,7 +67,7 @@ class Server:
 	def response_update(self, resp):
 		if 'response' in resp:
 			if resp['response'] == 'update_user_class':
-				if self.check_permissions('admin', 'creator'):
+				if self.get_user().data.check_values('permissions', 'admin', 'creator'):
 
 					self.user_class = self.import_user()
 					return {'status': True, 'data': 'Successfuly re-imported'}
@@ -76,7 +76,7 @@ class Server:
 
 
 			elif resp['response'] == 'update_server_class':
-				if self.check_permissions('admin', 'creator'):
+				if self.get_user().data.check_values('permissions', 'admin', 'creator'):
 
 					self.server_class = self.import_server()
 					return {'status': True, 'data': 'Successfuly re-imported'}
@@ -84,10 +84,3 @@ class Server:
 				return {'status': False, 'data': 'You\'re is\'nt admin/creator'}
 
 
-	def check_permissions(self, *permissions: str):
-		user_permissions = self.get_user().data.read(args = ['permissions'])['permissions']
-
-		for i in permissions:
-			if (i in user_permissions) == False:
-				return False
-			return True

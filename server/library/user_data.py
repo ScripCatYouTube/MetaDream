@@ -75,6 +75,16 @@ class UserData:
 		return data_readed
 
 
+	def check_values(self, key, *values):
+		user_data = self.read(args = [key])[key]
+
+		for i in values:
+			if (i in user_data) == False:
+				return False
+
+		return True
+
+
 	def _write(self, file, data):
 		with open(os.path.join(self.path, file), 'w') as f: f.write(json.dumps(data, indent = 4))
 
@@ -107,3 +117,4 @@ class UserData:
 
 		self.file = name_file
 		self._write(name_file, kwargs)
+		
